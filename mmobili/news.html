@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MMobili News</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        /*clearfixes*/
+
+        .cf:before,
+        .cf:after {
+            content: " ";
+            display: table;
+        }
+
+        .cf:after {
+            clear: both;
+        }
+
+        .main-container {
+            background: #fff;
+            max-width: 1000px;
+            margin: 25px auto 25px auto;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            padding: 25px;
+        }
+        /*animation element*/
+
+        .animation-element {
+            opacity: 0;
+            position: relative;
+        }
+        /*animation element sliding left*/
+
+        .animation-element.slide-left {
+            opacity: 0;
+            -moz-transition: all 1000ms linear;
+            -webkit-transition: all 1000ms linear;
+            -o-transition: all 1000ms linear;
+            transition: all 1000ms linear;
+            -moz-transform: translate3d(-100px, 0px, 0px);
+            -webkit-transform: translate3d(-100px, 0px, 0px);
+            -o-transform: translate(-100px, 0px);
+            -ms-transform: translate(-100px, 0px);
+            transform: translate3d(-100px, 0px, 0px);
+        }
+
+        .animation-element.slide-left.in-view {
+            opacity: 1;
+            -moz-transform: translate3d(0px, 0px, 0px);
+            -webkit-transform: translate3d(0px, 0px, 0px);
+            -o-transform: translate(0px, 0px);
+            -ms-transform: translate(0px, 0px);
+            transform: translate3d(0px, 0px, 0px);
+            left: 50%;
+            transform: translate(-50%);
+        }
+        /*animation slide left styled for testimonials*/
+
+        .animation-element.slide-left.testimonial {
+            float: left;
+            width: 47%;
+            margin: 0% 1.5% 3% 1.5%;
+            background: #F5F5F5;
+            padding: 15px;
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+            border: solid 1px #EAEAEA;
+        }
+        .animation-element.slide-left.testimonial:hover,
+        .animation-element.slide-left.testimonial:active{
+            box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .animation-element.slide-left.testimonial:nth-of-type(odd) {
+            width: 48.5%;
+            margin: 0% 1.5% 3.0% 0%;
+        }
+
+        .animation-element.slide-left.testimonial:nth-of-type(even) {
+            width: 48.5%;
+            margin: 0% 0% 3.0% 1.5%;
+        }
+
+        .animation-element.slide-left.testimonial .header{
+            float: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .animation-element.slide-left.testimonial .left{
+            float: left;
+            margin-right: 15px;
+        }
+        .animation-element.slide-left.testimonial .right{
+            float: left;
+        }
+
+        .animation-element.slide-left.testimonial img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            box-shadow: 0px 1px 3px rgba(51, 51, 51, 0.5);
+        }
+
+        .animation-element.slide-left.testimonial h3 {
+            margin: 0px 0px 5px 0px;
+        }
+
+        .animation-element.slide-left.testimonial h4 {
+            margin: 0px 0px 5px 0px;
+        }
+
+        .animation-element.slide-left.testimonial .content {
+            float: left;
+            width:100%;
+            margin-bottom: 10px;
+        }
+
+        .animation-element.slide-left.testimonial .rating{}
+
+        .animation-element.slide-left.testimonial i {
+            color: #aaa;
+            margin-right: 5px;
+        }
+
+
+
+        /*media queries for small devices*/
+        @media screen and (max-width: 678px){
+            /*testimonials*/
+            .animation-element.slide-left.testimonial,
+            .animation-element.slide-left.testimonial:nth-of-type(odd),
+            .animation-element.slide-left.testimonial:nth-of-type(even){
+                width: 100%;
+                margin: 0px 0px 20px 0px;
+            }
+            .animation-element.slide-left.testimonial .right,
+            .animation-element.slide-left.testimonial .left,
+            .animation-element.slide-left.testimonial .content,
+            .animation-element.slide-left.testimonial .rating{
+                text-align: center;
+                float: none;
+            }
+            .animation-element.slide-left.testimonial img{
+                width: 85px;
+                height: 85px;
+                margin-bottom: 5px;
+            }
+
+        }
+
+
+        .FadeImage {
+            -webkit-animation: Fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+            animation: Fadein 2s;
+            display: block;
+            margin: 25px auto;
+            -moz-animation: Fadein 2s; /* Firefox < 16 */
+            -ms-animation: Fadein 2s; /* Internet Explorer */
+            -o-animation: Fadein 2s; /* Opera < 12.1 */
+        }
+
+        .FadeText{
+            -webkit-animation: Fadein 10s; /* Safari, Chrome and Opera > 12.1 */
+            animation: Fadein 4s;
+            display: block;
+            margin: 25px auto;
+            -webkit-animation-delay: 1500ms;
+            animation-delay: 1500ms;
+            -moz-animation: Fadein 4s; /* Firefox < 16 */
+            -ms-animation: Fadein 4s; /* Internet Explorer */
+            -o-animation: Fadein 4s; /* Opera < 12.1 */
+        }
+
+        @keyframes Fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Firefox < 16 */
+        @-moz-keyframes Fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Safari, Chrome and Opera > 12.1 */
+        @-webkit-keyframes Fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Internet Explorer */
+        @-ms-keyframes Fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Opera < 12.1 */
+        @-o-keyframes Fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .grid12-6{
+            position:relative;
+            padding-top:10%;
+            padding-left: 50%;
+            padding-bottom: 20%;
+
+
+        }
+        .grid12-6 .inner_box{
+            position: relative;
+            max-height: 100%;
+            max-width: 100%;
+            min-width: 185px;
+
+            background:rgba(241,233,226,0.4);
+            transform:translate(-50%,-50%);
+            padding-bottom:20px;
+            padding-left: 20px;
+            padding-right: 25px;
+            padding-top: 10px;
+            text-align:center;
+        }
+        .grid12-6 .inner_box h2{
+            font-family:arial;
+            text-align:center;
+            font-size:26px;
+            font-weight:normal;
+            color:#777;
+        }
+        .grid12-6 .inner_box button{
+            background:seagreen;
+            color:#fff;
+            text-transform:uppercase;
+            font-weight:bold;
+            font-size:16px;
+            border:none;
+            padding:10px 30px;
+        }
+
+        .buttong{
+            background: seagreen;
+            padding: 10px 20px;
+            color:white;
+            text-transform:uppercase;
+            font-weight:bold;
+            font-size:16px;
+            border:none;
+
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="bg/news.html">български</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="products.html">Products</a>
+                </li>
+                <li>
+                    <a href="promotions.html">Promotions</a>
+                </li>
+                <li>
+                    <a href="catalog.html">Catalog</a>
+                </li>
+                <li>
+                    <a href="news.html">News</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('images/news/news1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading FadeImage">
+                    <h1>News</h1>
+                    <hr class="small">
+                    <span class="subheading">check out the latest news here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-preview">
+                <a href="contact.html">
+                    <h2 class="post-title animation-element slide-left">
+                        MMOBILI WITH NEW SHOWROOM
+                    </h2>
+                    <h3 class="post-subtitle animation-element slide-left">
+                        From the beginning of March 2014 we are pleased to welcome all customers to our new showroom in Sofia.
+                    </h3>
+                </a>
+                <p class="post-meta animation-element slide-left">Check out our new location <a href="https://www.google.com/maps/place/%D0%92%D0%98%D0%A2%D0%90+%D0%A1%D0%A2%D0%90%D0%A0%D0%A2/@42.6799987,23.3099425,387m/data=!3m2!1e3!4b1!4m5!3m4!1s0x40aa845671eb1951:0x5ab5c47694cc6b46!8m2!3d42.6799967!4d23.3110366?hl=bg">here</a>.</p>
+            </div>
+            <p> <hr class="small">
+            </p><br>
+            <div class="post-preview animation-element slide-left">
+                <a href="catalog.html">
+                    <h2 class="post-title animation-element slide-left">
+                        HAND-PAINTED AND ART FURNITURE
+                    </h2>
+                    <h3 class="post-subtitle animation-element slide-left">
+                        Mmobili presents the latest models of hand painted art furniture.
+                    </h3>
+                </a>
+                <p class="post-meta animation-element slide-left">Click <a href="catalog.html">here</a> to view our designs.</p>
+            </div>
+            <p> <hr class="small">
+            </p><br>
+            <div class="post-preview">
+                <a href="catalog.html">
+                    <h2 class="post-title animation-element slide-left">
+                        SERIES BLOOMSBURY
+                    </h2>
+                    <h3 class="post-subtitle animation-element slide-left">
+                        We are happy to present the new series Bloomsbury, made of solid wood and walnut veneer.
+                    </h3>
+                </a>
+                <p class="post-meta animation-element slide-left"> <a href="products.html">Check it out.</a></p>
+            </div>
+            <p> <hr class="small">
+            </p><br>
+            <div class="post-preview">
+                <a href="products.html">
+                    <h2 class="post-title animation-element slide-left">
+                        CABINETS FOR WINE
+                    </h2>
+                    <h3 class="post-subtitle animation-element slide-left">
+                        New series of wine cabinets made of solid wood / veneer oak and American walnut veneer.
+                    </h3>
+                </a>
+                <p class="post-meta animation-element slide-left">Click to <a href="products.html">view</a> .</p>
+            </div>
+            <p> <hr class="small">
+            </p><br>
+            <div class="post-preview">
+                <a href="products.html">
+                    <h2 class="post-title animation-element slide-left">
+                        COMPLETED PROJECT - LEDENICA
+                    </h2>
+                    <h3 class="post-subtitle animation-element slide-left">
+                        Check out the finished furnished version of the entertainment unit to the Park "Ledenica" Vratsa by simply clicking.
+                    </h3>
+                </a>
+            </div>
+            <p> <hr class="small">
+            </p><br>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Pager -->
+<ul class="pager">
+    <li class="next">
+        <a href="catalog.html">View Our Official Catalog &rarr;</a>
+    </li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://www.instagram.com/m.mobili/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/mmobilifurniture/?fref=ts">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pdf/catalog.pdf">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; MMOBILI 2017</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="js/jqBootstrapValidation.js"></script>
+<script src="js/contact_me.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="js/clean-blog.min.js"></script>
+<script>
+
+    var $animation_elements = $('.animation-element');
+    var $window = $(window);
+
+    function check_if_in_view() {
+        var window_height = $window.height();
+        var window_top_position = $window.scrollTop();
+        var window_bottom_position = (window_top_position + window_height);
+
+        $.each($animation_elements, function() {
+            var $element = $(this);
+            var element_height = $element.outerHeight();
+            var element_top_position = $element.offset().top;
+            var element_bottom_position = (element_top_position + element_height);
+
+            //check to see if this current container is within viewport
+            if ((element_bottom_position >= window_top_position) &&
+                (element_top_position <= window_bottom_position)) {
+                $element.addClass('in-view');
+            } else {
+                $element.removeClass('in-view');
+            }
+        });
+    }
+
+    $window.on('scroll resize', check_if_in_view);
+    $window.trigger('scroll');
+
+</script>
+</body>
+
+</html>
